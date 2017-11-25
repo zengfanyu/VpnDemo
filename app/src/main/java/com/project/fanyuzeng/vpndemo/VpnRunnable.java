@@ -2,6 +2,8 @@ package com.project.fanyuzeng.vpndemo;
 
 import android.util.Log;
 
+import com.project.fanyuzeng.vpndemo.utils.ByteBufferUtil;
+
 import java.io.FileDescriptor;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -31,7 +33,7 @@ public class VpnRunnable implements Runnable {
         boolean hasDataSent = true;
         while (!Thread.interrupted()) {
             if (hasDataSent) {
-                sentToNetBuffer = Utils.getByteBuffer();
+                sentToNetBuffer = ByteBufferUtil.getByteBuffer();
             } else {
                 sentToNetBuffer.clear();
             }

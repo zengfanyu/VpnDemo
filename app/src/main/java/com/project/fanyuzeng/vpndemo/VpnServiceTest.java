@@ -5,6 +5,8 @@ import android.net.VpnService;
 import android.os.ParcelFileDescriptor;
 import android.util.Log;
 
+import com.project.fanyuzeng.vpndemo.utils.CloseableUtil;
+
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -65,7 +67,7 @@ public class VpnServiceTest extends VpnService {
     public void onDestroy() {
         super.onDestroy();
         isRunning = false;
-        Utils.closeResource(mInterface);
+        CloseableUtil.closeResource(mInterface);
     }
 
     public static boolean isRunning() {
