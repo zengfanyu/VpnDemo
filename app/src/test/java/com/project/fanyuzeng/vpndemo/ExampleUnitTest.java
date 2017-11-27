@@ -2,6 +2,8 @@ package com.project.fanyuzeng.vpndemo;
 
 import org.junit.Test;
 
+import java.nio.ByteBuffer;
+
 /**
  * Example local unit test, which will execute on the development machine (host).
  *
@@ -23,5 +25,39 @@ public class ExampleUnitTest {
 //        //返回本机 IP
 //        InetAddress localHost = InetAddress.getLocalHost();
 //        System.out.println("localHost:" + localHost);
+
+        ByteBuffer buffer = ByteBuffer.allocate(1024);
+
+        buffer.put((byte) 1);
+        buffer.put((byte) 2);
+        buffer.put((byte) 3);
+
+        ByteBuffer duplicate = buffer.duplicate();
+
+        System.out.println("origin buffer:" + buffer.toString());
+        System.out.println("duplicate buffer:" + duplicate.toString());
+
+//        buffer.flip();
+
+        System.out.println("=============put==============");
+
+        buffer.put((byte) 4);
+
+        System.out.println("origin buffer:" + buffer.toString());
+        System.out.println("duplicate buffer:" + duplicate.toString());
+
+        buffer.flip();
+        System.out.println("=======origin buffer=====");
+        while (buffer.hasRemaining()) {
+            byte b = buffer.get();
+
+            System.out.println(b);
+        }
+        duplicate.flip();
+        System.out.println("=======duplicate buffer=====");
+        while (duplicate.hasRemaining()) {
+            byte b = duplicate.get();
+            System.out.println(b);
+        }
     }
 }

@@ -48,11 +48,11 @@ public class UdpHeader {
     }
 
     /**
-     * 用UDP各个字段值, ByteBuffer
+     * 用UDP各个字段值, 构造ByteBuffer
      *
      * @param buffer
      */
-    public void constructUdpBuffer(ByteBuffer buffer) {
+    public void constructUdpHeader(ByteBuffer buffer) {
         buffer.putShort((short) mSourcePort);
         buffer.putShort((short) mDestinationPort);
         buffer.putShort((short) mLength);
@@ -66,5 +66,37 @@ public class UdpHeader {
                 ",Length" + mLength +
                 ",Check sum" + mCheckSum +
                 "}";
+    }
+
+    public int getSourcePort() {
+        return mSourcePort;
+    }
+
+    public int getDestinationPort() {
+        return mDestinationPort;
+    }
+
+    public int getLength() {
+        return mLength;
+    }
+
+    public int getCheckSum() {
+        return mCheckSum;
+    }
+
+    public void setSourcePort(int sourcePort) {
+        mSourcePort = sourcePort;
+    }
+
+    public void setDestinationPort(int destinationPort) {
+        mDestinationPort = destinationPort;
+    }
+
+    public void setLength(int length) {
+        mLength = length;
+    }
+
+    public void setCheckSum(int checkSum) {
+        mCheckSum = checkSum;
     }
 }

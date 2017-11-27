@@ -74,6 +74,7 @@ public class TcpHeader {
         mAckNum = UnsignedConvertUtil.getUnsignedInt(buffer.getInt());
         mDataOffsetAndReserved = buffer.get();
         //偏移字段4bit,保留字段6bit,先 与 0xf0 得到数据偏移字段,又因为偏移字段的单位是4byte 所以<<2
+        // TODO: 2017/11/27 check mHeaderLength is valid ??
         mHeaderLength = (mDataOffsetAndReserved & 0xf0) << 2;
         //此处前2bit是保留位字段的最后2位,不属于标记位的内容,取后6位标记位时,按位与
         mFlags = buffer.get();
@@ -148,5 +149,93 @@ public class TcpHeader {
                 " || SYN=" + isSYN() +
                 " || FIN=" + isFIN() + "]" +
                 "}";
+    }
+
+    public int getSourcePort() {
+        return mSourcePort;
+    }
+
+    public int getDestinationPort() {
+        return mDestinationPort;
+    }
+
+    public long getSeqNum() {
+        return mSeqNum;
+    }
+
+    public long getAckNum() {
+        return mAckNum;
+    }
+
+    public byte getDataOffsetAndReserved() {
+        return mDataOffsetAndReserved;
+    }
+
+    public int getHeaderLength() {
+        return mHeaderLength;
+    }
+
+    public byte getFlags() {
+        return mFlags;
+    }
+
+    public int getWindows() {
+        return mWindows;
+    }
+
+    public int getCheckSum() {
+        return mCheckSum;
+    }
+
+    public int getUrgentPointer() {
+        return mUrgentPointer;
+    }
+
+    public byte[] getOptionDataAndFillData() {
+        return mOptionDataAndFillData;
+    }
+
+    public void setSourcePort(int sourcePort) {
+        mSourcePort = sourcePort;
+    }
+
+    public void setDestinationPort(int destinationPort) {
+        mDestinationPort = destinationPort;
+    }
+
+    public void setSeqNum(long seqNum) {
+        mSeqNum = seqNum;
+    }
+
+    public void setAckNum(long ackNum) {
+        mAckNum = ackNum;
+    }
+
+    public void setDataOffsetAndReserved(byte dataOffsetAndReserved) {
+        mDataOffsetAndReserved = dataOffsetAndReserved;
+    }
+
+    public void setHeaderLength(int headerLength) {
+        mHeaderLength = headerLength;
+    }
+
+    public void setFlags(byte flags) {
+        mFlags = flags;
+    }
+
+    public void setWindows(int windows) {
+        mWindows = windows;
+    }
+
+    public void setCheckSum(int checkSum) {
+        mCheckSum = checkSum;
+    }
+
+    public void setUrgentPointer(int urgentPointer) {
+        mUrgentPointer = urgentPointer;
+    }
+
+    public void setOptionDataAndFillData(byte[] optionDataAndFillData) {
+        mOptionDataAndFillData = optionDataAndFillData;
     }
 }

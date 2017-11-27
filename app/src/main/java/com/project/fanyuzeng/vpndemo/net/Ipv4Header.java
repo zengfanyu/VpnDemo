@@ -24,15 +24,15 @@ public class Ipv4Header {
     /**
      * 协议字段位 6 代表 TCP 协议
      */
-    private static final int TCP_PROTOCOL_NUM = 6;
+    public static final int TCP_PROTOCOL_NUM = 6;
     /**
      * 协议字段位 17 代表 UDP 协议
      */
-    private static final int UDP_PROTOCOL_NUM = 17;
+    public static final int UDP_PROTOCOL_NUM = 17;
     /**
      * -1 值自定义,此处只关注 UDP 和 TCP 两种传输层协议
      */
-    private static final int OTHER_PROTOCOL_NUM = -1;
+    public static final int OTHER_PROTOCOL_NUM = -1;
     /**
      * 版本 字段，4bit
      */
@@ -142,7 +142,7 @@ public class Ipv4Header {
         buffer.putShort((short) mTotalLength);
         buffer.putInt(mIdentificationAndFlagAndFragmentOffset);
         buffer.put((byte) mTTL);
-        buffer.put((byte) mProtocolNum);
+        buffer.put((byte) mProtocol.getProtocolNumber());
         buffer.putShort((short) mHeaderCheckSum);
         buffer.put(mSourceAddress.getAddress());
         buffer.put(mDestinationAddress.getAddress());
@@ -204,5 +204,101 @@ public class Ipv4Header {
         public int getProtocolNumber() {
             return protocolNumber;
         }
+    }
+
+    public byte getVersion() {
+        return mVersion;
+    }
+
+    public byte getIHL() {
+        return mIHL;
+    }
+
+    public int getHeaderLength() {
+        return mHeaderLength;
+    }
+
+    public short getTypeOfService() {
+        return mTypeOfService;
+    }
+
+    public int getTotalLength() {
+        return mTotalLength;
+    }
+
+    public int getIdentificationAndFlagAndFragmentOffset() {
+        return mIdentificationAndFlagAndFragmentOffset;
+    }
+
+    public short getTTL() {
+        return mTTL;
+    }
+
+    public short getProtocolNum() {
+        return mProtocolNum;
+    }
+
+    public TransportProtocol getProtocol() {
+        return mProtocol;
+    }
+
+    public int getHeaderCheckSum() {
+        return mHeaderCheckSum;
+    }
+
+    public InetAddress getSourceAddress() {
+        return mSourceAddress;
+    }
+
+    public InetAddress getDestinationAddress() {
+        return mDestinationAddress;
+    }
+
+    public void setVersion(byte version) {
+        mVersion = version;
+    }
+
+    public void setIHL(byte IHL) {
+        mIHL = IHL;
+    }
+
+    public void setHeaderLength(int headerLength) {
+        mHeaderLength = headerLength;
+    }
+
+    public void setTypeOfService(short typeOfService) {
+        mTypeOfService = typeOfService;
+    }
+
+    public void setTotalLength(int totalLength) {
+        mTotalLength = totalLength;
+    }
+
+    public void setIdentificationAndFlagAndFragmentOffset(int identificationAndFlagAndFragmentOffset) {
+        mIdentificationAndFlagAndFragmentOffset = identificationAndFlagAndFragmentOffset;
+    }
+
+    public void setTTL(short TTL) {
+        mTTL = TTL;
+    }
+
+    public void setProtocolNum(short protocolNum) {
+        mProtocolNum = protocolNum;
+    }
+
+    public void setProtocol(TransportProtocol protocol) {
+        mProtocol = protocol;
+    }
+
+    public void setHeaderCheckSum(int headerCheckSum) {
+        mHeaderCheckSum = headerCheckSum;
+    }
+
+    public void setSourceAddress(InetAddress sourceAddress) {
+        mSourceAddress = sourceAddress;
+    }
+
+    public void setDestinationAddress(InetAddress destinationAddress) {
+        mDestinationAddress = destinationAddress;
     }
 }
